@@ -1,0 +1,48 @@
+body {
+  background-color: lightblue;
+}
+
+.todos-app {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex: 1;
+}
+
+form > input {
+  padding: 10px;
+  font-size: 20px;
+  flex: 1;
+}
+
+form > button {
+  background: #367ead;
+  padding: 20px;
+  outline: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  color: white;
+}
+
+form > button:disabled {
+  background: gray;
+}
+
+.todo-list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.todo-item {
+  font-size: 24px;
+  display: flex;
+  border-bottom: 2px solid #367ead;
+  padding: 20px;
+  flex: 1;
+}
