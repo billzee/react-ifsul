@@ -1,0 +1,140 @@
+<!-- CTRL [space] -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- React -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <!-- ReactDOM -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- Estilos -->
+    <link rel="stylesheet" type="text/css" href="ifsul.css" />
+  </head>
+  <body>
+    <!-- #root -->
+    <div id="root_um"></div>
+    <div id="root_dois"></div>
+    <div id="root_tres"></div>
+    <div id="root_quatro"></div>
+    <div id="root_cinco"></div>
+  </body>
+  <!-- <script> -->
+  <script type="text/babel">
+    /*
+     * ReactDOM adicionado
+     */
+    const div = React.createElement(
+      "div",
+      { className: "hello" },
+      "Olá Mundo React!"
+    );
+    ReactDOM.render(div, document.getElementById("root_um"));
+    /*
+     * Babel adicionado
+     */
+    const Paragrafo = props => <p>{props.mensagem}</p>;
+    const Div = () => <Paragrafo mensagem="Olá Mundo React + JSX!" />;
+    ReactDOM.render(<Div />, document.getElementById("root_dois"));
+    /*
+     * Component
+     */
+    // const Paragrafo = props => <p>{props.mensagem}</p>;
+    class AppUm extends React.Component {
+      render() {
+        return <Paragrafo mensagem="Olá Mundo Component!" />;
+      }
+    }
+    ReactDOM.render(<AppUm />, document.getElementById("root_tres"));
+    /*
+     * Component com input
+     */
+    // const Paragrafo = props => <p>{props.mensagem}</p>;
+    class AppDois extends React.Component {
+      state = {
+        valorDoCampo: ""
+      };
+      campoMudou = e => {
+        const { value } = e.target;
+        this.setState({ valorDoCampo: value });
+      };
+      render() {
+        return (
+          <div>
+            <Paragrafo mensagem="Olá Mundo Component + input!" />
+            <input
+              type="text"
+              value={this.state.valorDoCampo}
+              onChange={e => this.campoMudou(e)}
+            />
+          </div>
+        );
+      }
+    }
+    ReactDOM.render(<AppDois />, document.getElementById("root_quatro"));
+
+    /*
+     * Todolist
+     */
+    function TodosApp() {
+      const [todos, setTodos] = React.useState([]);
+
+      function addTodo(todo) {
+        setTodos([...todos, todo]);
+      }
+
+      function renderTodos() {
+        todos.map(todo => <Todo todo={todo} />);
+      }
+
+      return (
+        <div>
+          <TodoForm onAdd={addTodo} />
+          {renderTodos()}
+        </div>
+      );
+    }
+
+    function TodoForm({ onAdd }) {
+      const [value, setValue] = React.useState("");
+
+      function handleChange(e) {
+        setValue(e.target.value);
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        onAdd(e.target.todo.value);
+        setValue("");
+      }
+
+      return (
+        <form onSubmit={handleSubmit}>
+          <input
+            name="todo"
+            type="text"
+            value={value}
+            onChange={handleChange}
+          />
+          <button type="submit">Adicionar</button>
+        </form>
+      );
+    }
+
+    function Todo(todo) {
+      return <div className="todo">{todo}</div>;
+    }
+
+    ReactDOM.render(<TodosApp />, document.getElementById("root_cinco"));
+  </script>
+</html>
