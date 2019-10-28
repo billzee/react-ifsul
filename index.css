@@ -1,10 +1,30 @@
 body {
-  background-color: lightblue;
+  background-color: #273642;
+  color: white;
+  margin: 0;
+  margin-bottom: 58px;
 }
 
 .todos-app {
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+button.danger {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex: 1;
+  bottom: 0;
+  background: #ba0909;
+  height: 60px;
+  outline: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  color: white;
 }
 
 form {
@@ -13,14 +33,13 @@ form {
 }
 
 form > input {
-  padding: 10px;
+  padding: 15px;
   font-size: 20px;
   flex: 1;
 }
 
 form > button {
   background: #367ead;
-  padding: 20px;
   outline: none;
   font-weight: bold;
   text-transform: uppercase;
@@ -33,13 +52,15 @@ form > button:disabled {
 }
 
 .todo-list {
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .todo-item {
+  color: white;
+  background-color: #101a29;
+  font-weight: bold;
   font-size: 24px;
   display: flex;
   border-bottom: 2px solid #367ead;

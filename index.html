@@ -23,8 +23,8 @@
   </head>
   <body>
     <!-- #root -->
-    <div id="root_um"></div>
-    <div id="root_dois"></div>
+    <!-- <div id="root_um"></div>
+    <div id="root_dois"></div> -->
     <div id="root_tres"></div>
   </body>
   <!-- <script> -->
@@ -37,7 +37,7 @@
       { className: "hello" },
       "Olá Mundo React!"
     );
-    ReactDOM.render(div, document.getElementById("root_um"));
+    // ReactDOM.render(div, document.getElementById("root_um"));
 
     /*
      * Babel adicionado
@@ -48,7 +48,7 @@
     function Div() {
       return <Paragrafo mensagem="Olá Mundo React + JSX!" />;
     }
-    ReactDOM.render(<Div />, document.getElementById("root_dois"));
+    // ReactDOM.render(<Div />, document.getElementById("root_dois"));
 
     /*
      * TodosApp
@@ -86,10 +86,17 @@
         return <div className="todo-list">{todos.map(renderTodo)}</div>;
       }
 
+      function clearStriked() {
+        setTodos(todos.filter(todo => !todo.striked));
+      }
+
       return (
         <div className="todos-app">
           <TodoForm onAdd={addTodo} />
           {renderTodos()}
+          <button type="button" className="danger" onClick={clearStriked}>
+            Limpar Executadas
+          </button>
         </div>
       );
     }
@@ -126,6 +133,7 @@
       function renderDescription() {
         return todo.striked ? <s>{todo.description}</s> : todo.description;
       }
+
       return (
         <div className="todo-item" onClick={onClick}>
           {renderDescription()}
